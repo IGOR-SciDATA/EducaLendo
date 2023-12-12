@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-63*2z$(bo&cwh5(k=$zfj1vv(4#^uj#k3j*&slr7lue5&vxty@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','18.191.233.250','0.0.0.0','https://www.easycontrol.site/','https://easycontrol.site/']
 
 
 # Application definition
@@ -68,11 +68,11 @@ WSGI_APPLICATION = 'educaweb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'educaweb',
+        'NAME': 'carteiraweb',
         'PORT': '3306',
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': '',
+        'HOST': 'carteiraweb.cfaql9cqyrlk.us-east-2.rds.amazonaws.com',
+        'USER': 'admin',
+        'PASSWORD': 'OHz14eRYMWnt5ZQUCQld',
         'OPTIONS': {
             'init_command': 'SET default_storage_engine=InnoDB'
         }
