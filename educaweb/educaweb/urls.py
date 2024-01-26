@@ -6,10 +6,13 @@ from educaapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.ver_materias, name='ver_materias'),
+    path('', views.ver_login, name='ver_login'),
+    path('vermaterias/', views.ver_materias, name='ver_materias'),
+    path('verusuarios/', views.ver_usuarios, name='ver_usuarios'),
     path('conteudos/', views.ver_conteudos, name='ver_conteudos'),
     path('avisos/', views.ver_avisos, name='ver_avisos'),
     path('detalhes/<int:pk>/', views.ver_detalhes, name='ver_detalhes'),
+    path('logar/', views.verif_login, name='verif_login'),
     path('addmateria/', views.create_materia, name='create_materia'),
     path('addcomentario/', views.create_comentario, name='create_comentario'),
     path('addconteudo/', views.create_conteudo, name='create_conteudo'),
