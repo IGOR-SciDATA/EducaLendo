@@ -18,7 +18,13 @@
           document.getElementById(el).style.display = 'none';
       }
     </script>
+    <style>
+      h1{
+        margin-left: 36%;
+     }
+    </style>
     <body>
+
       <nav class="menu-lateral">
         <div class="btn-expandir">
             <i class="bi bi-list"></i>
@@ -44,49 +50,32 @@
             </li>
         </ul>
       </nav>
+     
       <div class="col-6 mt-4 m-auto text-center">
         <a href="/"><img src={%static 'logo.png'%}></img></a>
       </div>
-      <h1>Disciplinas</h1>
-      <div class="col-5 text-center">
-       <div id="button-add">
-        <a onclick="Mudarestado('divMinha')"><i class="bi bi-plus-square-fill"></i></a>
-       </div>
-      </div>
-      <div class="col-5 mt-6 m-auto text-center">
-        <div id="divMinha" style="display: none;">
-          <form action="{%url 'create_materia'%}" method="post">
-            {% csrf_token %}
-            <div class="input">{{form.nome}}</div>
-            <div class="input">{{form.prof}}</div>
-            <div class="input">{{form.sala_num}}</div>
-            <button type="submit" class="btn btn-success" id="btn-submitmateria">Adicionar</button>
-          </form>
+
+        <div class="col-5 mt-6 m-auto text-center">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+            {%for  usuario in usuarios%}
+              <tr>
+                <th scope="row">{{usuario.id}}</th>
+                <td>{{usuario.username}}</td>
+                <td>{{usuario.email}}</td>
+                <td> <a onclick="return confirm('Tem certeza que deseja excluir?')" href=""><i id="btn-detalhes" class="bi bi-trash"></i></a></td>
+              </tr>
+            {%endfor%}
+            </tbody>
+          </table>
         </div>
-      </div>
-      <div class="col-5 mt-6 m-auto text-center">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome</th>
-              <th scope="col">Tutor</th>
-              <th scope="col">Sala Nº</th>
-              <th scope="col">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-          {%for  materia in materias%}
-            <tr>
-              <th scope="row">{{materia.id}}</th>
-              <td>{{materia.nome}}</td>
-              <td>{{materia.prof}}</td>
-              <td>{{materia.sala_num}}</td>
-              <td> <a onclick="return confirm('Tem certeza que deseja excluir?')" href="/deletemateria/{{materia.id}}/"><i id="btn-detalhes" class="bi bi-trash"></i></a></td>
-            </tr>
-          {%endfor%}
-          </tbody>
-        </table>
-      </div>
     </body>
 </html>

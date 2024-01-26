@@ -1,13 +1,37 @@
 from django.shortcuts import render,redirect
 from educaapp import forms
 from educaapp.models import *
+from django.contrib.auth import login as log
+from django.contrib.auth import authenticate,logout
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 
 def ver_materias(request):
     data = {}
     data['form'] = forms.FormMaterias()
     data['materias'] = Materias.objects.all()
     return render(request, 'materias.html', data)
+
+def ver_usuarios(request):
+    data = {}
+    data['usuarios'] = User.objects.all()
+    return render(request, 'usuarios.html', data)
+
+def ver_login(request):
+    data = {}
+    data['materias'] = Materias.objects.all()
+    return render(request, 'login.html', data)
+
+def verif_login(request):
+    user = authenticate(username=request.POST['user'], password=request.POST['pass'])
+    if user is not None:
+       log(request, user)
+       return redirect('/vermaterias/')
+    else:
+       data = {}
+       data['msg'] = 'Usuário ou Senha incorreto!'
+       data['class'] = 'alert-danger'
+       return render(request, 'login.html', data)
 
 def ver_conteudos(request):
     data = {}
@@ -21,6 +45,7 @@ def ver_detalhes(request, pk):
     data['conteudos'] = Conteudos.objects.get(id=pk)
     data['comentarios'] = Comentarios.objects.filter(id_conteudo=pk).order_by('-id')
     return render(request, 'detalhes.html', data)
+
 
 def edit_descricao(request, pk):
     data = {}
