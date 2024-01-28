@@ -14,8 +14,10 @@ SECRET_KEY = 'django-insecure-63*2z$(bo&cwh5(k=$zfj1vv(4#^uj#k3j*&slr7lue5&vxty@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','18.191.233.250','0.0.0.0','https://www.easycontrol.site/','https://easycontrol.site/']
-
+ALLOWED_HOSTS = ['*','18.191.233.250','0.0.0.0','https://www.easycontrol.site','https://easycontrol.site']
+CSRF_TRUSTED_ORIGINS = ['https://www.easycontrol.site']
+CSRF_ALLOWED_ORIGINS = ['https://www.easycontrol.site']
+CORS_ORIGINS_WHITELIST = ['https://www.easycontrol.site']
 
 # Application definition
 
