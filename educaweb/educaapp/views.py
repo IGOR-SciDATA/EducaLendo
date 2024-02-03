@@ -77,7 +77,8 @@ def create_comentario(request):
       form = form.save(commit=False)
       form.id_conteudo = id
       form.save()
-      return redirect(request.META['HTTP_REFERER'])
+      referer1 = request.META.get('HTTP_REFERER', None)
+      return redirect(referer1)
    
 def update_descricao(request, pk):
    data = {}
@@ -102,4 +103,5 @@ def delete_materia(request, pk):
 def delete_comentario(request, pk):
    bd = Comentarios.objects.get(id=pk)
    bd.delete() 
-   return redirect(request.META['HTTP_REFERER'])
+   referer1 = request.META.get('HTTP_REFERER', None)
+   return redirect(referer1)
