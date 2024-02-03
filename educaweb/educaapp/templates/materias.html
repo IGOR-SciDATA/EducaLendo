@@ -17,8 +17,41 @@
         else
           document.getElementById(el).style.display = 'none';
       }
+
+      function myFunction() {
+        document.getElementById("body").style = "background-color: black; color: white;";
+        document.getElementById("logoCentral").src = "{%static 'logo2.png'%}";
+        document.getElementById("button-drkmode").style = "display: none;";
+        document.getElementById("button-lightmode").style = "display: true;";
+      }
+
+      function myFunction2() {
+        document.getElementById("body").style = "background-color: white; color: black;";
+        document.getElementById("logoCentral").src = "{%static 'logo.png'%}";
+        document.getElementById("button-drkmode").style = "display: true;";
+        document.getElementById("button-lightmode").style = "display: none;";
+      }
     </script>
-    <body>
+    <style>
+
+      .dark-mode {
+        background-color: black;
+        color: white;
+      }
+
+      .white-mode {
+        background-color: white;
+        color: black;
+      }
+     
+     .button-drkmode {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+     }
+           
+    </style>
+    <body id="body">
       <nav class="menu-lateral">
         <div class="btn-expandir">
             <i class="bi bi-list"></i>
@@ -45,9 +78,13 @@
         </ul>
       </nav>
       <div class="col-6 mt-4 m-auto text-center">
-        <a href="/"><img src={%static 'logo.png'%}></img></a>
+        <a href="/"><img id="logoCentral" src={%static 'logo.png'%}></img></a>
       </div>
       <h1>Disciplinas</h1>
+      <div class="button-drkmode">
+        <button class="btn btn-dark" id="button-drkmode" onclick="myFunction()">Modo escuro 🌙</button>
+        <button class="btn btn-light" id="button-lightmode" style="display: none;" onclick="myFunction2()">Modo claro ☀️</button>
+      </div>
       <div class="col-5 text-center">
        <div id="button-add">
         <a onclick="Mudarestado('divMinha')"><i class="bi bi-plus-square-fill"></i></a>

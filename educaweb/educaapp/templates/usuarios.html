@@ -17,13 +17,45 @@
         else
           document.getElementById(el).style.display = 'none';
       }
+    
+      function myFunction() {
+        document.getElementById("body").style = "background-color: black; color: white;";
+        document.getElementById("logoCentral").src = "{%static 'logo2.png'%}";
+        document.getElementById("button-drkmode").style = "display: none;";
+        document.getElementById("button-lightmode").style = "display: true;";
+      }
+
+      function myFunction2() {
+        document.getElementById("body").style = "background-color: white; color: black;";
+        document.getElementById("logoCentral").src = "{%static 'logo.png'%}";
+        document.getElementById("button-drkmode").style = "display: true;";
+        document.getElementById("button-lightmode").style = "display: none;";
+      }
     </script>
     <style>
       h1{
         margin-left: 36%;
      }
+
+
+     .dark-mode {
+      background-color: black;
+      color: white;
+    }
+
+    .white-mode {
+      background-color: white;
+      color: black;
+    }
+   
+   .button-drkmode {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+   }
+        
     </style>
-    <body>
+    <body id="body">
 
       <nav class="menu-lateral">
         <div class="btn-expandir">
@@ -52,14 +84,16 @@
       </nav>
      
       <div class="col-6 mt-4 m-auto text-center">
-        <a href="/"><img src={%static 'logo.png'%}></img></a>
+        <a href="/"><img id="logoCentral" src={%static 'logo.png'%}></img></a>
       </div>
-
+      <div class="button-drkmode">
+        <button class="btn btn-dark" id="button-drkmode" onclick="myFunction()">Modo escuro 🌙</button>
+        <button class="btn btn-light" id="button-lightmode" style="display: none;" onclick="myFunction2()">Modo claro ☀️</button>
+      </div>
         <div class="col-5 mt-6 m-auto text-center">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Ações</th>
@@ -68,7 +102,6 @@
             <tbody>
             {%for  usuario in usuarios%}
               <tr>
-                <th scope="row">{{usuario.id}}</th>
                 <td>{{usuario.username}}</td>
                 <td>{{usuario.email}}</td>
                 <td> <a onclick="return confirm('Tem certeza que deseja excluir?')" href=""><i id="btn-detalhes" class="bi bi-trash"></i></a></td>
