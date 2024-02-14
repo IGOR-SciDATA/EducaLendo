@@ -14,12 +14,8 @@ SECRET_KEY = 'django-insecure-63*2z$(bo&cwh5(k=$zfj1vv(4#^uj#k3j*&slr7lue5&vxty@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-APPEND_SLASH = False
 
 ALLOWED_HOSTS = ['*','18.191.233.250','0.0.0.0','https://www.easycontrol.site','https://easycontrol.site']
-CSRF_TRUSTED_ORIGINS = ['https://www.easycontrol.site']
-CSRF_ALLOWED_ORIGINS = ['https://www.easycontrol.site']
-CORS_ORIGINS_WHITELIST = ['https://www.easycontrol.site']
 
 # Application definition
 
@@ -39,7 +35,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -118,10 +114,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/staticfiles/'
-STATIC_ROOT = '/home/ubuntu/EducaLendo/educaapp/static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/ubuntu/EducaLendo/educaweb/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
